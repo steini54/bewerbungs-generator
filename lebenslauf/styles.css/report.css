@@ -1,0 +1,215 @@
+/* ==================================================
+   CEO STYLE – EXECUTIVE MINIMAL
+   ================================================== */
+
+
+/* ==================================================
+   GRUNDLAYOUT
+   ================================================== */
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #ffffff;
+  color: #111;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  line-height: 1.55;
+  letter-spacing: 0.2px;
+}
+
+
+/* ==================================================
+   WRAPPER
+   ================================================== */
+
+#preview-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+  box-sizing: border-box;
+}
+
+
+/* ==================================================
+   A4 CONTAINER
+   ================================================== */
+
+#preview {
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.05);
+}
+
+
+/* ==================================================
+   DECKBLATT – EXECUTIVE
+   ================================================== */
+
+.cover {
+  width: 210mm;
+  height: 297mm;
+  padding: 55mm 35mm;
+  box-sizing: border-box;
+  text-align: left;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cover h1 {
+  font-size: 40pt;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.cover #pv-posten {
+  font-size: 20pt;
+  font-weight: 400;
+  margin-top: 10mm;
+  margin-bottom: 25mm;
+  color: #333;
+}
+
+.cover #pv-name {
+  font-size: 14pt;
+  font-weight: 400;
+  color: #666;
+}
+
+
+/* ==================================================
+   SEITENUMBRUCH
+   ================================================== */
+
+.page-break {
+  page-break-before: always;
+  break-before: page;
+}
+
+
+/* ==================================================
+   ANSCHREIBEN
+   ================================================== */
+
+.anschreiben {
+  padding: 35mm 30mm 30mm 30mm;
+  width: 210mm;
+  min-height: 297mm;
+  box-sizing: border-box;
+}
+
+
+/* ==================================================
+   HEADER
+   ================================================== */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25mm;
+  font-size: 10.5pt;
+}
+
+.header .datum {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+
+/* ==================================================
+   ÜBERSCHRIFTEN
+   ================================================== */
+
+h2 {
+  font-size: 13pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 35px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #111;
+  padding-bottom: 6px;
+}
+
+
+/* ==================================================
+   TEXT
+   ================================================== */
+
+p {
+  font-size: 11.5pt;
+  margin-bottom: 10pt;
+}
+
+
+/* ==================================================
+   LEBENSLAUF – EXECUTIVE LAYOUT
+   ================================================== */
+
+.pv-row {
+  display: flex;
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.pv-row span:first-child {
+  flex: 1;
+  font-weight: 600;
+}
+
+.pv-date {
+  text-align: right;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #333;
+}
+
+.sub-line {
+  font-size: 10.5pt;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+
+/* ==================================================
+   FOOTER
+   ================================================== */
+
+footer {
+  margin-top: 45mm;
+}
+
+
+/* ==================================================
+   PRINT
+   ================================================== */
+
+@page {
+  size: A4;
+  margin: 25mm;
+}
+
+@media print {
+
+  body * {
+    visibility: hidden;
+  }
+
+  #preview,
+  #preview * {
+    visibility: visible;
+  }
+
+  #preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: none;
+  }
+}

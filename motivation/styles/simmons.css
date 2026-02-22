@@ -1,0 +1,242 @@
+/* ==================================================
+   SPRINGFIELD PASTELL EDITION ☁️🍩
+   ================================================== */
+
+
+/* ==================================================
+   GRUNDLAYOUT
+   ================================================== */
+
+body {
+  font-family: "Comic Sans MS", "Comic Neue", cursive, sans-serif;
+  background: #ffffff;
+  color: #222;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  line-height: 1.5;
+}
+
+
+/* ==================================================
+   A4 CONTAINER
+   ================================================== */
+
+#preview {
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  box-sizing: border-box;
+  border: 2px solid #FFD90F;
+  box-shadow: 0 0 35px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+#preview-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;   /* horizontale Zentrierung */
+  align-items: flex-start;   /* oben beginnen */
+  padding: 40px 0;
+  box-sizing: border-box;
+}
+
+/* ==================================================
+   DECKBLATT – HIMMELBLAU
+   ================================================== */
+
+.cover {
+  width: 100%;
+  height: 297mm;
+  background: #CFEFFF; /* Pastell Himmelblau */
+  padding: 40mm 30mm;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+
+/* ==================================================
+   TITEL – ☁️ LEBENSLAUF ☁️
+   ================================================== */
+
+.cover h1 {
+  font-size: 44pt;
+  font-weight: 900;
+  color: #FFD90F;
+  margin: 0 0 25mm 0;
+  letter-spacing: 2px;
+  text-shadow:
+    3px 3px 0px #003399,
+    6px 6px 0px #ffffff;
+}
+
+.cover h1::before {
+  content: "☁️ ";
+}
+
+.cover h1::after {
+  content: " ☁️";
+}
+
+/* ==================================================
+   ORTSSCHILD OPTIK – GRÜNE VERSION
+   ================================================== */
+
+.cover #pv-name {
+  display: block;
+  font-size: 20pt;
+  font-weight: 900;
+  color: #ffffff; /* Weißer Text */
+
+  margin-top: 5mm;
+  padding: 18mm 25mm;
+
+  background: #157522; /* Neues Grün */
+
+  border: 4px solid #ffffff; /* Innenrahmen weiß */
+
+  /* Doppelrahmen + Gelbe Unterkante */
+  box-shadow:
+    0 0 0 6px #157522,   /* Zwischenraum in Grün */
+    0 0 0 10px #ffffff,  /* Außenrahmen weiß */
+    0 8px 0 #FFD90F;     /* Gelbe Unterkante */
+
+  border-radius: 2px;
+}
+
+/* Posten */
+.cover #pv-posten {
+  font-size: 16pt;
+  font-weight: 600;
+  color: #333;
+  margin-top: 10mm;
+}
+
+
+/* ==================================================
+   SECTION HEADLINES – COMIC STYLE
+   ================================================== */
+
+h2 {
+  font-size: 20pt;
+  color: #003399;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  padding-left: 45px;
+  position: relative;
+
+  text-shadow:
+    2px 2px 0px #FFD90F,
+    4px 4px 0px #000;
+}
+
+h2::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 26px;
+}
+
+/* SECTION ICONS */
+#pv-schule-title::before { content: "🏫"; }
+#pv-beruf-title::before { content: "💼"; }
+#pv-weiterbildung-title::before { content: "📚"; }
+#pv-hobby-title::before { content: "🛹"; }
+#pv-kenntnisse-title::before { content: "🧠"; }
+
+
+/* ==================================================
+   DONUT EINTRÄGE 🍩
+   ================================================== */
+
+.pv-row {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  gap: 10px;
+  padding-left: 35px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.pv-row::before {
+  content: "🍩";
+  position: absolute;
+  left: 0;
+  top: -2px;
+  font-size: 18px;
+  transform: rotate(-15deg);
+}
+
+.pv-row span:first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 700;
+}
+
+.pv-date {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-weight: 900;
+  color: #003399;
+  margin-left: 10px;
+}
+
+.sub-line {
+  font-size: 11pt;
+  color: #444;
+  margin-bottom: 18px;
+  margin-left: 40px;
+}
+
+
+/* ==================================================
+   HEADER (ANSCHREIBEN)
+   ================================================== */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20mm;
+}
+
+.header .datum {
+  font-weight: 900;
+  color: #003399;
+}
+
+
+/* ==================================================
+   PRINT FIX
+   ================================================== */
+
+@media print {
+
+  body * {
+    visibility: hidden;
+  }
+
+  #preview,
+  #preview * {
+    visibility: visible;
+  }
+
+  #preview {
+	position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: none;
+   border: none;
+  }
+
+  .cover {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

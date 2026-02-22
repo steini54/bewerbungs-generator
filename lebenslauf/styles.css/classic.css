@@ -1,0 +1,223 @@
+/* ============================= 
+   Grundlayout
+   ============================= */
+body {
+  font-family: "Times New Roman", serif;
+  color: #000;
+  background: #fff;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  line-height: 1.5;
+}
+
+/* =============================
+   Wrapper
+   ============================= */
+#preview-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 0;
+  box-sizing: border-box;
+}
+
+/* =============================
+   Preview-Container (A4)
+   ============================= */
+#preview {
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: left;
+  position: relative;
+}
+
+/* =============================
+   Deckblatt
+   ============================= */
+.cover {
+  background: #e8f7fa;
+  width: 100%;
+  min-height: 297mm;
+  padding: 20mm;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* =============================
+   Überschriften
+   ============================= */
+h1 {
+  text-align: center;
+  font-size: 24pt;
+  text-decoration: underline;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 18pt;
+  margin-bottom: 12px;
+}
+
+h3 {
+  font-size: 18pt;
+  border-bottom: 1px solid #000;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+h4 {
+  font-size: 14pt;
+  color: #555;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+/* =============================
+   Text
+   ============================= */
+p {
+  font-size: 12pt;
+  margin: 4px 0;
+}
+
+/* =============================
+   Lebenslauf Bereich
+   ============================= */
+.cv {
+  padding: 20mm;
+  box-sizing: border-box;
+}
+
+/* =============================
+   Einträge (NEU strukturiert)
+   ============================= */
+.pv-entry {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.pv-entry:last-child {
+  border-bottom: none;
+}
+
+/* Erste Zeile (Titel + Datum) */
+.pv-row {
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.pv-row span:first-child {
+  flex: 1;
+}
+
+/* Klassischer Strich als Bullet */
+.pv-entry .pv-row::before {
+  content: "–";
+  margin-right: 8px;
+}
+
+/* Datum rechts */
+.pv-date {
+  text-align: right;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* =============================
+   Wasserzeichen
+   ============================= */
+.watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 70px;
+  color: rgba(200,200,200,0.35);
+  pointer-events: none;
+  z-index: 9999;
+  white-space: nowrap;
+}
+
+/* =============================
+   Header
+   ============================= */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.header .adresse {
+  text-align: left;
+}
+
+.header .datum {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* =============================
+   Seitenumbruch
+   ============================= */
+.page-break {
+  page-break-before: always;
+  break-before: page;
+}
+
+/* =============================
+   Druckeinstellungen
+   ============================= */
+@media print {
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body {
+    background: #fff !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #preview, #preview * {
+    visibility: visible;
+  }
+
+  #preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .watermark {
+    position: absolute !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+
+  .cover {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

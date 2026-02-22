@@ -1,0 +1,160 @@
+<!DOCTYPE html> 
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>VitaGen – Vorschau</title>
+
+  <link rel="stylesheet" href="lstyle.css">
+  <link rel="stylesheet" href="lprint.css" media="print">
+  <link id="theme-style" rel="stylesheet" href="styles/classic.css">
+</head>
+<body>
+
+<div class="style-switch">
+  <button data-style="classic.css">Klassisch</button>
+  <button data-style="basic.css">Basic</button>
+  <button data-style="report.css">Report</button>
+  <button data-style="modern.css">Modern</button>
+  <button data-style="headerbar.css">Headerbar</button>
+  <button data-style="simmons.css">Simmons</button>
+  <button data-style="crosser.css">Crosser</button>
+</div>
+
+<hr>
+<div style="margin-top:10px; text-align:center;">
+  <button id="backBtn" style="
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color:#777;
+    color:white;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+  ">
+    ← Zurück zur Eingabe
+  </button>
+</div>
+	
+<div style="margin-top:10px; text-align:center;">
+  <button id="printBtn" style="
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color:#445b87;
+    color:white;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+  ">
+    🖨 Druckvorschau
+  </button>
+</div>	
+
+<div style="margin-top:10px; text-align:center;">
+  <button id="buyBtn" style="
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color:#28a745;
+    color:white;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+  ">
+    Kaufen
+  </button>
+</div>
+
+<!-- Modal für Kauf -->
+<div id="buyModal" style="
+  display:none;
+  position:fixed;
+  top:0; left:0; right:0; bottom:0;
+  background-color: rgba(0,0,0,0.5);
+  z-index:1000;
+  justify-content:center;
+  align-items:center;
+">
+  <div style="
+    background:white;
+    padding:20px;
+    border-radius:8px;
+    max-width:400px;
+    width:90%;
+  ">
+    <h3>CV kaufen & herunterladen</h3>
+    <label>Name:<br><input type="text" id="buyerName" style="width:100%;"></label><br><br>
+    <label>Email:<br><input type="email" id="buyerEmail" style="width:100%;"></label><br><br>
+    
+    <label>Zahlungsart:</label><br>
+    <select id="paymentMethod" style="width:100%; padding:5px;">
+      <option value="card">Kreditkarte (gute Variante)</option>
+      <option value="twint">Twint (schnell und unkompliziert)</option>
+      <option value="invoice">Rechnung (eigentlich zu aufwendig für so einen kleinen Betrag)</option>
+    </select><br><br>
+    
+    <button id="payBtn" style="
+      padding:10px 20px;
+      background-color:#007bff;
+      color:white;
+      border:none;
+      border-radius:4px;
+      cursor:pointer;
+    ">Jetzt bezahlen</button>
+    <button onclick="document.getElementById('buyModal').style.display='none';" style="
+      padding:10px 20px;
+      background-color:#ccc;
+      border:none;
+      border-radius:4px;
+      cursor:pointer;
+      margin-left:10px;
+    ">Abbrechen</button>
+  </div>
+</div>	
+	
+<div id="preview-wrapper">
+<div id="preview">
+	 <div class="watermark">VORSCHAU – PREVIEW</div>
+
+  <!-- Seite 1: Deckblatt -->
+  <div class="cover">
+    <h1>Lebenslauf</h1>
+    <img id="pv-foto" style="max-width:200px; display:none;">
+    <h3 id="pv-name"></h3>
+    <p id="pv-adresse"></p>
+    <p id="pv-kontakt"></p>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- Seite 2: Lebenslauf -->
+  <div class="cv">
+
+    <h2>Schulbildung</h2>
+    <div id="pv-schulbildung"></div> <!-- Container für alle Schulbildungseinträge -->
+
+    <h2>Beruflicher Werdegang</h2>
+    <div id="pv-beruf"></div> <!-- Container für alle Berufseinträge -->
+
+    <h2>Aus- und Weiterbildung</h2>
+    <div id="pv-weiterbildung"></div> <!-- Container für alle Weiterbildungs-Einträge -->
+
+    <h2>Kenntnisse & Fähigkeiten</h2>
+    <div id="pv-kenntnisse"></div> <!-- Container für alle Kenntnisse -->
+
+    <h2>Hobbies</h2>
+    <div id="pv-hobbys"></div> <!-- Container für alle Hobbys -->
+
+    <br><br><br>
+    <p id="pv-datum"></p>
+	  <br>
+	  <br>
+	  <p>________________________________</p>
+    <p id="pv-unterschrift"></p>
+
+  </div>
+
+</div>
+</div>
+
+<script src="lpreview.js"></script>
+</body>
+</html>

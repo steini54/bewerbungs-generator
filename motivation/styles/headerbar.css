@@ -1,0 +1,272 @@
+/* =========================================================
+   ALLGEMEINE SCHRIFTEN & FARBEN
+   ========================================================= */
+
+h1, h2, h3, h4 {
+  color: white;
+}
+
+p, ul, li {
+  color: #000;
+}
+
+/* =========================================================
+   GRUNDLAYOUT (SCREEN / PREVIEW)
+   ========================================================= */
+body {
+  font-family: Calibri, sans-serif;
+  background: #fff;   /* ← DAS ist der Fix */
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  line-height: 2.1;
+}
+
+/* =========================================================
+   WRAPPER – ZENTRIERTE A4-VORSCHAU
+   ========================================================= */
+
+#preview-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  padding: 40px 0;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   ANSCHREIBEN / FOLGESEITEN
+   ========================================================= */
+
+.anschreiben {
+  padding: 30mm 25mm 25mm 25mm; /* oben, rechts, unten, links */
+  box-sizing: border-box;
+  background: #fff;
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   A4-PREVIEW / DRUCKBEREICH
+   ========================================================= */
+
+#preview {
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  box-sizing: border-box;
+  border: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+/* =========================================================
+   DECKBLATT
+   ========================================================= */
+
+.cover {
+  background: #445b87;
+  width: 100%;
+  height: 297mm;
+  padding: 20mm;
+  box-sizing: border-box;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cover h1,
+.cover h2,
+.cover h3,
+.cover h4,
+.cover p,
+.cover span {
+  color: #fff !important;
+}
+
+/* =========================================================
+   TEXTAUSRICHTUNG
+   ========================================================= */
+
+#pv-posten,
+#pv-stichwoerter,
+#pv-stichwoerter2,
+#pv-stichwoerter3,
+footer {
+  text-align: left;
+}
+
+/* =========================================================
+   ÜBERSCHRIFTEN (NICHT DECKBLATT)
+   ========================================================= */
+
+h3, h4 {
+  text-align: center;
+  font-weight: normal;
+  margin: 0;
+  padding: 8px;
+  background: #445b87;
+  border: 1px solid #445b87;
+  border-radius: 4px;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+h2 {
+  text-align: center;
+  font-weight: bold;
+  margin: 30px 0 15px;
+  padding: 8px;
+  background: #445b87;
+  border: 1px solid #445b87;
+  border-radius: 4px;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   LEBENSLAUF
+   ========================================================= */
+
+.lebenslauf {
+  padding: 0 5mm;
+  box-sizing: border-box;
+}
+
+.lebenslauf ul {
+  list-style: disc;
+  padding: 0 10mm;
+  margin: 0 2mm;
+}
+
+.lebenslauf li {
+  margin-bottom: 6px;
+}
+
+.lebenslauf li .main-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.lebenslauf .left {
+  text-align: left;
+}
+
+.lebenslauf .right {
+  text-align: right;
+  min-width: 90px;
+}
+
+/* =========================================================
+   DRUCKANSICHT – 100 % A4-STABIL
+   ========================================================= */
+
+@media print { 
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  /* Elemente wie Buttons, Navigation etc. ausblenden */
+  button,
+  .style-switcher,
+  .navigation,
+  .top-buttons {
+    display: none !important;
+  }
+
+  html, body {
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #preview, #preview * {
+    visibility: visible;
+  }
+
+  #preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    box-sizing: border-box;
+    border: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    text-align: left;
+  }
+
+  /* ==============================
+     Deckblatt Farbgenauigkeit erzwingen
+     ============================== */
+  .cover {
+    background: #445b87; /* dunkelblau bleibt */
+    width: 100%;
+    height: 297mm;
+    padding: 20mm;
+    box-sizing: border-box;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* <-- HIER die neue Passage einfügen --> */
+  .cover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 210mm;
+    height: 297mm;
+    background: #445b87;
+    z-index: -1;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Wrapper Flexbox kann bleiben, beeinflusst Druck nicht mehr */
+  #preview-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 0;
+    box-sizing: border-box;
+  }
+
+  .anschreiben {
+    padding: 30mm 25mm 25mm 25mm;
+    box-sizing: border-box;
+    background: #fff;
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+  }
+}

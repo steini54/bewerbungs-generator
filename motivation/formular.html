@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>VitaGen – Motivationsschreiben</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Motivationsschreiben</h1>
+
+<form id="vitagenForm">
+
+  <h2>📝 Meine Angaben</h2>
+		<!-- FOTO-UPLOAD BUTTON UND PLATZHALTER -->
+  <div id="foto-section">
+    <label for="foto-upload">📷 Foto hochladen:</label>
+    <input type="file" id="foto-upload" accept="image/*">
+    <div id="foto-container"></div> <!-- Hier wird das Foto angezeigt -->
+  </div>
+  <label>Mein Name</label>
+ <input type="text" id="name" name="name">
+
+  <label>Meine Adresse</label>
+  <textarea id="adresse" name="adresse"></textarea>
+
+  <label>E-Mail / Telefon</label>
+   <input type="text" id="kontakt" name="kontakt">
+
+  <h2>📝 Bewerbung</h2>
+  <label>Bewerbung als...</label>
+  <input type="text" id="posten" name="posten">
+
+  <label>Adresse Arbeitgeber</label>
+<textarea id="arbeitgeber" name="arbeitgeber"></textarea>
+
+	<label for="funktion">Bewerbung als... (für Motivationstext)</label>
+<input type="text" id="funktion" name="funktion" placeholder="z.B. Softwareentwickler">
+	
+  <h2>📝 Motivationsschreiben</h2>
+   <label id="pv-hallo">Begrüssung</label>
+	<p class="hint">z.B. Sehr geehrte...</p>
+	<textarea id="stichwoerter" name="stichwoerter"></textarea>
+	
+	<label id="pv-fliesstext">Motivationstext</label>
+     <p class="hint">
+     Stichwörter eingeben (z. B. Erfahrung, Motivation, Stärken).  
+     Mit Hilfe von KI einen Fliesstext erstellen.
+     </p>
+    <textarea id="stichwoerter2" name="stichwoerter2"></textarea>
+  
+<!-- Button direkt nach dem Stichworte-Feld -->
+<button type="button" id="generateTextBtn" style="
+  margin-top:10px;
+  padding:8px 16px;
+  font-size:14px;
+  background-color:#445b87;
+  color:white;
+  border:none;
+  border-radius:4px;
+  cursor:pointer;
+" onclick="window.location.href='https://chatgpt.com/'">
+  🛠 KI Hilfe zum Fließtext erstellen
+</button>
+	
+	<label id="pv-adieu">Verabschiedung</label>
+	 <p class="hint">z.B. Mit freundlichen Grüssen...</p>
+   <textarea id="stichwoerter3" name="stichwoerter3"></textarea>
+	
+<input type="text" id="datum" name="datum" placeholder="Datum">
+  <input type="text" id="unterschrift" name="unterschrift" placeholder="Dein Name – Unterschrift">
+
+  <div class="buttons">
+    <button type="button" id="saveBtn">💾 Zwischenspeichern</button>
+	<button type="button" id="previewBtn">👁 Vorschau</button>
+  </div>
+
+</form>
+
+<script src="script.js"></script>
+</body>
+</html>
+

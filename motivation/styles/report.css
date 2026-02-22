@@ -1,0 +1,183 @@
+/* =============================
+   REPORT STYLE – TITLE STACK
+   ============================= */
+
+/* =============================
+   Grundlayout
+   ============================= */
+body {
+  font-family: Calibri, "Segoe UI", sans-serif;
+  background: #ffffff;
+  color: #111;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  line-height: 2.1;
+}
+/* =============================
+   Wrapper
+   ============================= */
+#preview-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+  box-sizing: border-box;
+}
+
+/* =============================
+   Preview (DIN A4)
+   ============================= */
+#preview {
+  width: 210mm;
+  min-height: 297mm;
+  background: white;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+/* =============================
+   DECKBLATT – REPORT
+   ============================= */
+.cover {
+  width: 210mm;
+  height: 297mm;
+  padding: 45mm 30mm;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  background: #ffffff;
+}
+.cover #pv-foto {
+  display: none !important;
+}
+
+/* =============================
+   TITELBLOCK
+   ============================= */
+
+/* „Bewerbung als“ */
+.cover h1 {
+  font-size: 36pt;
+  font-weight: 500;
+  margin: 0;
+  color: #111;
+}
+
+.cover h1::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #000;
+  margin: 10px 0;
+}
+
+h4 {
+  font-size: 14pt;
+  font-weight: 500;
+  color: grey;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+/* Stellenbeschreibung – gleiche Größe & Schrift */
+.cover #pv-posten {
+  display: block;
+  font-size: 36pt;
+  font-weight: 500;
+  margin-top: 6mm;
+  margin-bottom: 18mm;
+  color: #111;
+}
+
+/* Name kleiner darunter */
+.cover #pv-name {
+  font-size: 16pt;
+  font-weight: 400;
+  color: #555;
+  margin: 0;
+}
+
+/* =============================
+   Seitenumbruch
+   ============================= */
+.page-break {
+  page-break-before: always;
+  break-before: page;
+}
+
+/* =============================
+   ANSCHREIBEN
+   ============================= */
+.anschreiben {
+  padding: 30mm 25mm 25mm 25mm;
+  width: 210mm;
+  min-height: 297mm;
+  box-sizing: border-box;
+}
+
+/* =============================
+   Header
+   ============================= */
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18mm;
+}
+
+.header .adresse {
+  text-align: left;
+  font-size: 11pt;
+}
+
+.header .datum {
+  text-align: right;
+  white-space: nowrap;
+  font-size: 11pt;
+}
+
+/* =============================
+   Text
+   ============================= */
+p {
+  font-size: 12pt;
+  margin-bottom: 6pt;
+}
+
+/* =============================
+   Footer
+   ============================= */
+footer {
+  margin-top: 35mm;
+}
+
+/* =============================
+   Druck
+   ============================= */
+@page {
+  size: A4;
+  margin: 25mm 20mm 25mm 25mm;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #preview,
+  #preview * {
+    visibility: visible;
+  }
+
+  #preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}

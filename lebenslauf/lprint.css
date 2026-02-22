@@ -1,0 +1,62 @@
+/* =============================
+   Deckblatt-Print Reset
+   ============================= */
+@media print {
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #preview, #preview * {
+    visibility: visible;
+  }
+
+  /* =====================
+     Deckblatt
+     ===================== */
+  .cover {
+    position: relative !important;      /* Bezug für ::before */
+    display: flex !important;           /* Flexbox für Zentrierung */
+    flex-direction: column !important;
+    justify-content: center !important; /* vertikal zentrieren */
+    align-items: center !important;     /* horizontal zentrieren */
+    text-align: center !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hintergrundfarbe für Druck */
+  .cover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 210mm;
+    height: 297mm;
+    background: #e8f7fa;
+    z-index: -1;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .page-break {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+}

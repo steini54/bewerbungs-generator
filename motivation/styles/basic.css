@@ -1,0 +1,236 @@
+/* ============================= 
+   Grundlayout
+   ============================= */
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  background: #fff;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  line-height: 2.1;
+}
+
+/* =============================
+   Wrapper – zentriert alles
+   ============================= */
+#preview-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;   /* horizontale Zentrierung */
+  align-items: flex-start;   /* oben beginnen */
+  padding: 40px 0;
+  box-sizing: border-box;
+}
+
+.anschreiben {
+  padding: 30mm 25mm 25mm 25mm; /* oben, rechts, unten, links */
+  box-sizing: border-box;
+  background: #fff;
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+}
+
+/* =============================
+   Preview-Container (A4)
+   ============================= */
+#preview {
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  box-sizing: border-box;
+  border: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+/* =============================
+   Deckblatt hellblau einfärben
+   ============================= */
+.cover {
+  background: #edf0f2;
+  width: 100%;
+  height: 297mm;
+  padding: 20mm;
+  box-sizing: border-box;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =============================
+   Überschriften
+   ============================= */
+h1 {
+  text-align: center;
+  font-size: 22pt;
+  color: #111;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 14pt;
+  margin-bottom: 5px;
+}
+
+h3 {
+  font-size: 18pt;
+  color: #555;
+  border-bottom: 1px solid #ccc;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+h4 !important{
+  font-size: 14pt;
+  color: grey;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+/* =============================
+   Text und Listen
+   ============================= */
+p, li {
+  font-size: 11.5pt;
+  margin: 0 0 4px 0;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+
+/* =============================
+   Listenpunkte Flex für Tab-Trennung
+   ============================= */
+li {
+  display: block; /* Hauptcontainer block */
+  margin-bottom: 2px;
+}
+
+li .main-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+li .main-line .left {
+  text-align: left;
+}
+
+li .main-line .right {
+  text-align: right;
+}
+
+/* Unterzeilen unterhalb des Listeneintrags */
+.sub-line {
+  text-align: right;
+  margin-right: 0;       /* rechts bündig */
+  font-size: 0.9em;
+  color: gray;
+  margin-top: 2px;
+  margin-bottom: 20px;
+}
+
+/* Seitenumbruch beim Drucken */
+.page-break {
+  page-break-before: always;
+  break-before: page;
+}
+
+/* =============================
+   Footer
+   ============================= */
+footer {
+  margin-top: 40px;
+}
+
+
+.lebenslauf {
+  padding-left: 5mm;
+  padding-right: 5mm;
+  box-sizing: border-box;
+}
+
+/* ===== Lebenslauf-Listen mit größeren Einzügen ===== */
+.lebenslauf ul {
+  /* Einzüge deutlich sichtbar machen */
+  list-style: disc !important;
+  padding-left: 10mm !important;
+  padding-right: 10mm !important;
+  margin-left: 2mm !important;
+  margin-right: 2mm !important;
+}
+
+.lebenslauf li {
+  margin-bottom: 6px;
+  padding-left: 2mm;
+  padding-right: 2mm;
+}
+
+/* Links-Rechts-Spalten im Lebenslauf mit Abstand */
+.lebenslauf li .main-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px; /* Abstand zwischen linker und rechter Seite */
+}
+
+.lebenslauf li .main-line .left {
+  text-align: left;
+}
+
+.lebenslauf li .main-line .right {
+  text-align: right;
+  min-width: 90px;
+}
+
+/* =============================
+   Druckeinstellungen
+   ============================= */
+@media print {
+  body {
+    background: #fff !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #preview, #preview * {
+    visibility: visible;
+  }
+
+  #preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    box-shadow: none;
+  }
+
+.cover {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.header .adresse {
+  text-align: left;
+}
+
+.header .datum {
+  text-align: right;
+  white-space: nowrap;
+}

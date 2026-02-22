@@ -1,0 +1,303 @@
+/* ============================= 
+   Grundlayout
+   ============================= */
+body {
+  font-family: "Times New Roman", serif;
+  color: #000;
+  background: #fff;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  line-height: 1.5;
+}
+
+/* =============================
+   Wrapper – zentriert alles
+   ============================= */
+#preview-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;   /* horizontale Zentrierung */
+  align-items: flex-start;   /* oben beginnen */
+  padding: 40px 0;
+  box-sizing: border-box;
+}
+
+/* =============================
+   Motivationsschreiben-Seiten
+   ============================= */
+.anschreiben {
+  padding: 30mm 25mm 25mm 25mm; /* oben, rechts, unten, links */
+  box-sizing: border-box;
+  background: #fff;
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+}
+
+/* =============================
+   Preview-Container (A4)
+   ============================= */
+#preview {
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  box-sizing: border-box;
+  border: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: left;
+  position: relative; /* wichtig für Wasserzeichen */
+}
+
+/* =============================
+   Deckblatt hellblau
+   ============================= */
+.cover {
+  background: #e8f7fa;
+  width: 100%;
+  min-height: 297mm;      /* A4 Höhe */
+  padding: 20mm;              /* kein zusätzliches Padding, wir zentrieren alles */
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* vertikal zentrieren */
+  align-items: center;      /* horizontal zentrieren */
+  text-align: center;
+}
+
+/* =============================
+   Überschriften
+   ============================= */
+h1 {
+  text-align: center;
+  font-size: 24pt;
+  text-decoration: underline;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 18pt;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 18pt;
+  border-bottom: 1px solid #000;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+h4 {
+  font-size: 14pt;
+  color: #555;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+/* =============================
+   Text und Listen
+   ============================= */
+p, li {
+  font-size: 12pt;
+  margin: 5px 0;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* =============================
+   Listenpunkte Flex für links/rechts
+   ============================= */
+li {
+  display: block;
+  margin-bottom: 4px;
+}
+
+li .main-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+li .main-line .left {
+  text-align: left;
+}
+
+li .main-line .right {
+  text-align: right;
+}
+
+/* Unterzeilen unterhalb des Listeneintrags */
+.sub-line {
+  text-align: right;
+  margin-right: 0;
+  font-size: 0.9em;
+  color: gray;
+  margin-top: 2px;
+  margin-bottom: 20px;
+}
+
+/* =============================
+   Footer
+   ============================= */
+footer {
+  margin-top: 40px;
+}
+
+.lebenslauf {
+  padding-left: 5mm;
+  padding-right: 5mm;
+  box-sizing: border-box;
+}
+
+/* Lebenslauf-Listen mit größeren Einzügen */
+.lebenslauf ul {
+  list-style: disc !important;
+  padding-left: 10mm !important;
+  padding-right: 10mm !important;
+  margin-left: 2mm !important;
+  margin-right: 2mm !important;
+}
+
+.lebenslauf li {
+  margin-bottom: 6px;
+  padding-left: 2mm;
+  padding-right: 2mm;
+}
+
+.lebenslauf li .main-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.lebenslauf li .main-line .left {
+  text-align: left;
+}
+
+.lebenslauf li .main-line .right {
+  text-align: right;
+  min-width: 90px;
+}
+
+/* =============================
+   Wasserzeichen
+   ============================= */
+.watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 70px;
+  color: rgba(200,200,200,0.35);
+  pointer-events: none;
+  z-index: 9999;
+  white-space: nowrap;
+}
+
+/* =============================
+   Header
+   ============================= */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.header .adresse {
+  text-align: left;
+}
+
+.header .datum {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* =============================
+   Druckeinstellungen
+   ============================= */
+@media print { 
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body {
+    background: #fff !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #preview, #preview * {
+    visibility: visible;
+  }
+
+  #preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  /* Wasserzeichen für Print */
+  .watermark {
+    position: absolute !important;
+    visibility: visible !important;
+    display: block !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-size: 70px;
+    color: rgba(200,200,200,0.35);
+    z-index: 9999;
+  }
+
+  .cover {
+	  background: #e8f7fa;
+  width: 100%;
+  min-height: 297mm;      /* A4 Höhe */
+  padding: 20mm;              /* kein zusätzliches Padding, wir zentrieren alles */
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* vertikal zentrieren */
+  align-items: center;      /* horizontal zentrieren */
+  text-align: center;
+	  
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+ .cover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 210mm;
+    height: 297mm;
+    background: #e8f7fa;
+    z-index: -1;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }	
+
+  .page-break {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  #pv-foto {
+    max-width: 40mm;
+    height: auto;
+  }
+}
