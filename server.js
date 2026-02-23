@@ -20,10 +20,11 @@ app.post("/generate-pdf", async (req, res) => {
     const { htmlContent, stylePath } = req.body;
 
     // Puppeteer für Cloud-Umgebungen optimieren
-    browser = await puppeteer.launch({
-      headless: "new",
-      args: ["--no-sandbox", "--disable-setuid-sandbox"]
-    });
+     browser = await puppeteer.launch({
+  executablePath: "/usr/bin/chromium",
+  headless: true,
+  args: ["--no-sandbox", "--disable-setuid-sandbox"]
+});
     
     const page = await browser.newPage();
     const fullHtml = `
