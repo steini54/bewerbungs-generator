@@ -5,80 +5,54 @@ const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-// Listen on `port` and 0.0.0.0
-app.listen(port, "0.0.0.0", function () {
-  // ...
-});
+
 // Middleware
 app.use(bodyParser.json({ limit: "10mb" }));
-app.use(express.static(__dirname)); // erlaubt Zugriff auf deine HTML & CSS Dateien
-
-// PDF generieren
-app.post("/generate-pdf", async (req, res) => {
-  try {
-    const { htmlContent, stylePath } = req.body;
-
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-
-    // HTML zusammenbauen
-    const fullHtml = `
-      <html>
-        <head>
-          <link rel="stylesheet" href="file://${path.join(__dirname, stylePath)}">
-          <style>
-            .watermark { display: none !important; }
-          </style>
-        </head>
-        <body>
-          ${htmlContent}
-        </body>
-      </html>
-    `;
-
-    await page.setContent(fullHtml, { waitUntil: "networkidle0" });
-
-    const pdfBuffer = await page.pdf({
-      format: "A4",
-      printBackground: true,
-      margin: {
-        top: "20mm",
-        bottom: "20mm",
-        left: "15mm",
-        right: "15mm",
-      },
-    });
-
-    await browser.close();
-
-    res.set({
-      "Content-Type": "application/pdf",
-      "Content-Disposition": 'attachment; filename="Bewerbung.pdf"',
-      "Content-Length": pdfBuffer.length,
-    });
-
-    res.send(pdfBuffer);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Fehler bei PDF-Erstellung");
-  }
-});
-
-app.listen(PORT, () => {
-  console.log(`✅ Server läuft auf http://localhost:${PORT}`);
-});
-const express = require("express");
-const path = require("path");
-
-const app = express();
-
 app.use(express.static(__dirname));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "start.html"));
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, "0.0.0.0." => {
-  console.log("Server läuft auf Port " + PORT);
+app.post("/generate-pdf", async (req, res) => {
+  let browser;
+  try {
+    const { htmlContent, stylePath } = req.body;
+
+    // Puppeteer für Cloud-Umgebungen optimieren
+    browser = await puppeteer.launch({
+      headless: "new",
+      args: ["--no-sandbox", "--disable-setuid-sandbox"]
+    });
+    
+    const page = await browser.newPage();
+    const fullHtml = `
+      <html>
+        <head>
+          <style>.watermark { display: none !important; }</style>
+        </head>
+        <body>${htmlContent}</body>
+      </html>
+    `;
+
+    await page.setContent(fullHtml, { waitUntil: "networkidle0" });
+    const pdfBuffer = await page.pdf({ format: "A4", printBackground: true });
+
+    await browser.close();
+
+    res.set({
+      "Content-Type": "application/pdf",
+      "Content-Disposition": 'attachment; filename="Bewerbung.pdf"',
+    });
+    res.send(pdfBuffer);
+  } catch (error) {
+    if (browser) await browser.close();
+    console.error(error);
+    res.status(500).send("Fehler bei PDF-Erstellung");
+  }
+});
+
+// Nur EIN Listen-Aufruf am Ende
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`✅ Server läuft auf Port ${PORT}`);
 });
