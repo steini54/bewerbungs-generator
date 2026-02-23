@@ -5,7 +5,10 @@ const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+// Listen on `port` and 0.0.0.0
+app.listen(port, "0.0.0.0", function () {
+  // ...
+});
 // Middleware
 app.use(bodyParser.json({ limit: "10mb" }));
 app.use(express.static(__dirname)); // erlaubt Zugriff auf deine HTML & CSS Dateien
